@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Customer List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+
+    <a class="navbar-brand" href="/index">Hitit Interview Assignment Application</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="http://localhost:8080/h2-console"target="_blank" rel="noopener noreferrer">Database
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Log out</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Full Name</th>
+            <th scope="col">Tr Id Number</th>
+            <th scope="col">Birth Date</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">City</th>
+            <th scope="col">Item Quantity</th>
+            <th scope="col">Add/Check Items</th>
+            <th scope="col">Edit Customer</th>
+            <th scope="col">Delete</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="customer: ${customers}">
+            <td th:text="${customer.id}">Mark</td>
+            <td th:text="${customer.name}">Mark</td>
+            <td th:text="${customer.trId}">Mark</td>
+            <td th:text="${customer.birthDate}">Mark</td>
+            <td th:text="${customer.email}">Mark</td>
+            <td th:text="${customer.phone}">Mark</td>
+            <td th:text="${customer.city}">Mark</td>
+            <td th:text="${customer.items}">Mark</td>
+            <td><a th:href="@{/item/{id}(id=${customer.id})}" class="btn btn-secondary"><i class="fas fa-dolly"></i></a></td>
+            <td><a th:href="@{/edit/{id}(id=${customer.id})}" class="btn btn-primary"><i class="fas fa-user-edit"></i></a></td>
+            <td><a th:href="@{/delete/{id}(id=${customer.id})}" class="btn btn-danger"><i class="fa fa-user-times"></i></a></td>
+
+        </tr>
+
+        </tbody>
+    </table>
+    <p><a href="/register" class="btn btn-primary"><i class="fas fa-user-plus"></i></a> </p>
+
+
+
+</body>
+<footer class="footer" >
+    <p>Developed by Mustafa Kağan Armağan <a href="mailto:mkaganarmagan@outlook.com"class="btn btn-secondary"><i class="fas fa-envelope"></i></a>
+        <a href="https://www.linkedin.com/in/mkarmagan/" class="btn btn-secondary"target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/kaganarmagan" class="btn btn-secondary"target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+    </p>
+</footer>
+</html>

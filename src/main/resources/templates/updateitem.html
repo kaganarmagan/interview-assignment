@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Hitit Interview Assignment Application</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+
+    <a class="navbar-brand" href="/index">Hitit Interview Assignment Application</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="http://localhost:8080/h2-console"target="_blank" rel="noopener noreferrer">Database
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Log out</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container my-5">
+    <h2>New Item</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <form action="#" th:action="@{/item/update/{id}(id=${item.id})}" th:object="${item}" method="post">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="name" class="col-form-label">Name</label>
+                        <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Name" required >
+                        <div class="alert alert-warning" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="volume" class="col-form-label">Volume</label>
+                        <input type="text" th:field="*{volume}" class="form-control" id="volume" placeholder="Volume" required >
+                        <div class="alert alert-warning" th:if="${#fields.hasErrors('volume')}" th:errors="*{volume}"></div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="destinationCity" class="col-form-label">City</label>
+                        <input type="text" th:field="*{destinationCity}" class="form-control" id="destinationCity" placeholder="City" required>
+                        <div class="alert alert-warning" th:if="${#fields.hasErrors('destinationCity')}" th:errors="*{destinationCity}"></div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="price" class="col-form-label">Price</label>
+                        <input type="text" th:field="*{price}" class="form-control" id="price" placeholder="Price" required >
+                        <div class="alert alert-warning" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mt-5">
+                        <input type="submit" class="btn btn-primary" value="Add Item" >
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+</body>
+<footer class="footer" >
+    <p>Developed by Mustafa Kağan Armağan <a href="mailto:mkaganarmagan@outlook.com"class="btn btn-secondary"><i class="fas fa-envelope"></i></a>
+        <a href="https://www.linkedin.com/in/mkarmagan/" class="btn btn-secondary"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/kaganarmagan" class="btn btn-secondary"><i class="fab fa-github"></i></a>
+    </p>
+</footer>
+</html>
