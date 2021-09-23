@@ -6,6 +6,7 @@ import lombok.Data;
 import java.time.LocalDate;
 
 
+
 @Data
 public class CustomerListDTO {
     private Long id;
@@ -15,5 +16,7 @@ public class CustomerListDTO {
     private String email;
     private String phone;
     private LocalDate birthDate;
-    private Integer items;
+    private Integer itemsQuant;
 }
+
+

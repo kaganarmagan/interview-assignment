@@ -4,18 +4,21 @@ import com.kaganarmagan.hititinterviewassignment.dto.ItemListDTO;
 import com.kaganarmagan.hititinterviewassignment.dto.ItemRequestDTO;
 import com.kaganarmagan.hititinterviewassignment.entity.Customer;
 import com.kaganarmagan.hititinterviewassignment.entity.Item;
+import com.kaganarmagan.hititinterviewassignment.exceptions.ItemNotFoundException;
 import com.kaganarmagan.hititinterviewassignment.mappers.ItemMapper;
 import com.kaganarmagan.hititinterviewassignment.repository.ICustomerRepository;
 import com.kaganarmagan.hititinterviewassignment.repository.IItemRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
-
+@Slf4j
 public class ItemService implements IBaseService<Item, ItemRequestDTO, ItemListDTO> {
     @Autowired
     public  IItemRepository repository;
@@ -31,11 +34,14 @@ public class ItemService implements IBaseService<Item, ItemRequestDTO, ItemListD
     @Override
     @Transactional
     public Item save(ItemRequestDTO itemDTO) {
-        Item item=mapper.fromItemListDTOtoItem(itemDTO);
+        Item item=mapper.fromItemRequestDTOtoItem(itemDTO);
 
 
         return repository.save(item);
     }
+
+
+
 
     @Override
     @Transactional(readOnly = true)
@@ -77,6 +83,7 @@ public class ItemService implements IBaseService<Item, ItemRequestDTO, ItemListD
 
 
     }
+    @Transactional(readOnly = true)
 
     public List<Item> findItemsByItemIds(List<Long> itemIds) {
 
@@ -104,5 +111,14 @@ public class ItemService implements IBaseService<Item, ItemRequestDTO, ItemListD
         return items.size();
     }
 
+    public ItemListDTO findById(long id){
+        Optional<Item> optionalItem=repository.findById(id);
+        if (optionalItem.isPresent()){
+            return mapper.fromItemToItemRequestDTO(optionalItem.get());
+        }else{
+            throw new ItemNotFoundException("Item with id ("+id+") is not found");
+        }
+
+    }
 
 }

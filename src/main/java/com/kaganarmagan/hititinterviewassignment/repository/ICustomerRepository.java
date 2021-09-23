@@ -9,7 +9,12 @@ import java.util.List;
 
 @Repository
 public interface ICustomerRepository extends JpaRepository<Customer,Long> {
-    @Query("select c from Customer c order by c.name")
+
     List<Customer> findAllByOrderByNameAsc();
+
+    @Query(value = "select distinct c.city from Customer c ")
+    List<String> findDistinctByCity();
+
+    List<Customer> findCustomersByCity(String city);
 
 }

@@ -13,7 +13,6 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-
     <a class="navbar-brand" href="/index">Hitit Interview Assignment Application</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
             aria-expanded="false" aria-label="Toggle navigation">
@@ -32,8 +31,17 @@
         </ul>
     </div>
 </nav>
-
-
+<!--##Nav bar-->
+<!-- -->
+<div class="form-group blu-margin col-md-2">
+   <div class="row">
+    <select class="form-control" th:field="${cities}"  id="dropCity">
+        <option value="All">All Cities</option>
+        <option th:each="city : ${cities}" th:value="${city}" th:text="${city}"></option>
+    </select>
+    <td><a id="dropCityButton" type="button"  class="btn btn-primary">Filter by City</a></td>
+   </div>
+</div>
     <table class="table table-bordered table-striped">
         <thead class="thead-dark">
         <tr>
@@ -60,7 +68,7 @@
             <td th:text="${customer.email}">Mark</td>
             <td th:text="${customer.phone}">Mark</td>
             <td th:text="${customer.city}">Mark</td>
-            <td th:text="${customer.items}">Mark</td>
+            <td th:text="${customer.itemsQuant}">Mark</td>
             <td><a th:href="@{/item/{id}(id=${customer.id})}" class="btn btn-secondary"><i class="fas fa-dolly"></i></a></td>
             <td><a th:href="@{/edit/{id}(id=${customer.id})}" class="btn btn-primary"><i class="fas fa-user-edit"></i></a></td>
             <td><a th:href="@{/delete/{id}(id=${customer.id})}" class="btn btn-danger"><i class="fa fa-user-times"></i></a></td>
@@ -69,8 +77,13 @@
 
         </tbody>
     </table>
-    <p><a href="/register" class="btn btn-primary"><i class="fas fa-user-plus"></i></a> </p>
+<p><div id="feedback"></div></p>
+<p><a href="/register" class="btn btn-primary"><i class="fas fa-user-plus"></i></a> </p>
 
+<script type="text/javascript"
+        src="webjars/jquery/2.2.4/jquery.min.js"></script>
+
+<script type="text/javascript" src="js/ajax.js"></script>
 
 
 </body>

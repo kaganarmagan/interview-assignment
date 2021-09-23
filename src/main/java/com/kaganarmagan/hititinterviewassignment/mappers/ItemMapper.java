@@ -18,10 +18,11 @@ public abstract class ItemMapper {
 
     @Mapping(target = "customer",expression = "java(itemService.findCustomerById(itemListDTO.getCustomerId()))")
     public abstract Item fromItemListDTOtoItem(ItemListDTO itemListDTO);
-    @Mapping(target = "customer",expression = "java(itemService.findCustomerById(itemDTO.getCustomerId()))")
-    public abstract Item fromItemListDTOtoItem(ItemRequestDTO itemDTO);
 
     @Mapping(target = "customerId",source = "item.customer.id")
     public abstract ItemListDTO fromItemToItemRequestDTO(Item item);
-
+    @Mapping(target = "customer",expression = "java(itemService.findCustomerById(itemDTO.getCustomerId()))")
+    public abstract Item fromItemRequestDTOtoItem(ItemRequestDTO itemDTO);
+    @Mapping(target ="customerId",source="item.customer.id")
+    public abstract ItemListDTO fromItemToItemListDTO(Item item);
 }

@@ -23,8 +23,15 @@ public class CustomerService implements IBaseService<Customer, CustomerRequestDT
 
 
 
+    public  Customer update(CustomerListDTO customerListDTO) {
+        Customer customer=mapper.fromCustomerListDTOtoCustomer(customerListDTO);
+
+        return repository.save(customer);
+    }
+
 
     @Override
+    @Transactional
     public  Customer save(CustomerRequestDTO customerRequestDTO) {
         Customer customer=mapper.fromCustomerRequestDTOtoCustomer(customerRequestDTO);
 
@@ -64,5 +71,20 @@ public class CustomerService implements IBaseService<Customer, CustomerRequestDT
     }
 
 
+    public CustomerListDTO findById(long id) {
+        return mapper.fromCustomertoCustomerListDTO(repository.findById(id).orElse(null));
+    }
 
+    public  List<String> findCities(){
+        return repository.findDistinctByCity();
+    }
+
+    public List<CustomerListDTO> findCustomersByCity(String s){
+        List<CustomerListDTO> list=new ArrayList<>();
+        for (Customer c:repository.findCustomersByCity(s)
+             ) {
+            list.add(mapper.fromCustomertoCustomerListDTO(c));
+        }
+        return list;
+    }
 }

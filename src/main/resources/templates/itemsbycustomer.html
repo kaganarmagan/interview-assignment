@@ -43,7 +43,6 @@
         <th scope="col">City</th>
         <th scope="col">Price</th>
         <th scope="col">Customer ID</th>
-        <th scope="col">Add Item</th>
         <th scope="col">Edit Item</th>
         <th scope="col">Delete Item</th>
 
@@ -64,7 +63,7 @@
 
     </tbody>
 </table>
-<p><a th:href="@{/item/register/{id}(id=${items.get(0).getCustomerId()})}" class="btn btn-primary"><i class="fas fa-plus"></i></a> </p>
+<p><a th:href="@{/item/additem/{id}(id=${customer_id})}" class="btn btn-primary"><i class="fas fa-plus"></i></a> </p>
 
 
 

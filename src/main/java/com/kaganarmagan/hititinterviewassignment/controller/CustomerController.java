@@ -2,9 +2,9 @@ package com.kaganarmagan.hititinterviewassignment.controller;
 
 import com.kaganarmagan.hititinterviewassignment.dto.CustomerListDTO;
 import com.kaganarmagan.hititinterviewassignment.dto.CustomerRequestDTO;
-
 import com.kaganarmagan.hititinterviewassignment.service.CustomerService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,13 +16,14 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("")
 @RequiredArgsConstructor
+@Slf4j
 public class CustomerController {
 
     private final CustomerService customerService;
 
     @GetMapping("/index")
     public String findCustomers(Model model){
-        model.addAttribute("customers",customerService.findAll());
+        model.addAttribute("customers",customerService.findAll()).addAttribute("cities",customerService.findCities());
         return "index";
     }
 
@@ -42,24 +43,24 @@ public class CustomerController {
         return "redirect:/index";
     }
 
-   /* @GetMapping("/update/{id}")
-    public String stratUpdating(@PathVariable long id,Model model){
-        model.addAttribute("update",customerService.findById(id));
+    @GetMapping("/update/{id}")
+    public String showUpdateForm(@PathVariable long id,Model model){
+        model.addAttribute("customer",customerService.findById(id));
 
-        return
-    }*/
+        return "updatecustomer";
+    }
 
 
 
-    /*@PostMapping("/update/{id}")
+    @PostMapping("/update/{id}")
     public String updateUser(@PathVariable int id, @Valid CustomerListDTO customerListDTO, BindingResult result, Model model){
         if(result.hasErrors()){
             return "updatecustomer";
         }
 
-        customerService.save(customerListDTO);
+        customerService.update(customerListDTO);
         return "redirect:/index";
-    }*/
+    }
 
     @GetMapping("/delete/{id}")
     public String deleteCustomer(@PathVariable long id){
