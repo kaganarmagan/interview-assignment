@@ -31,13 +31,13 @@ public class CustomerController {
     @GetMapping("/register")
     public String addCustomer(Model model){
         model.addAttribute("customer",new CustomerRequestDTO());
-        return "addcustomer";
+        return "add-customer";
     }
 
     @PostMapping("/addcustomer")
     public String saveCustomer(@Valid @ModelAttribute("customer") @DateTimeFormat(pattern = "dd/MM/yyyy") CustomerRequestDTO customer ,BindingResult result){
         if(result.hasErrors()){
-            return "addcustomer";
+            return "add-customer";
         }
         customerService.save(customer);
         return "redirect:/index";
@@ -47,7 +47,7 @@ public class CustomerController {
     public String showUpdateForm(@PathVariable long id,Model model){
         model.addAttribute("customer",customerService.findById(id));
 
-        return "updatecustomer";
+        return "update-customer";
     }
 
 
@@ -55,7 +55,7 @@ public class CustomerController {
     @PostMapping("/update")
     public String updateUser( @Valid @ModelAttribute("customer") CustomerListDTO customerListDTO, BindingResult result){
         if(result.hasErrors()){
-            return "updatecustomer";
+            return "update-customer";
         }
 
         customerService.update(customerListDTO);

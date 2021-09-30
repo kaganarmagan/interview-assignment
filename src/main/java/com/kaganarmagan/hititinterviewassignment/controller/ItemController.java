@@ -26,48 +26,44 @@ public class ItemController {
     public String itemsByCustomer(Model model,@PathVariable long id){
         model.addAttribute("items",itemService.findItemsByCustomerId(id)).addAttribute("customer_id",id);
 
-        return "itemsbycustomer";
+        return "items-by-customer";
     }
 
     @GetMapping("/additem/{id}")
     public String addItem(@PathVariable long id,Model model){
-
         model.addAttribute("item",new ItemRequestDTO(id));
 
-        return "additem";
+        return "add-item";
     }
 
 
     @PostMapping("/additem/{customerId}")
     public String saveItem(@PathVariable long customerId ,@Valid @ModelAttribute("item") ItemRequestDTO item , BindingResult result){
-        System.out.println(item);
         if(result.hasErrors()){
-            return "additem";
+            return "add-item";
         }
         itemService.save(item);
         return "redirect:/item/"+customerId;
     }
 
-    @GetMapping("/delete/{id}")
-    public String deleteItem(@PathVariable long id){
+    @GetMapping("/delete/{customerId}/{id}")
+    public String deleteItem(@PathVariable long customerId,@PathVariable long id){
         itemService.deleteById(id);
-        return "redirect:/item/"+id;
+        return "redirect:/item/"+customerId;
     }
 
 
     @GetMapping("/update/{id}")
     public String showUpdateForm(@PathVariable long id,Model model){
-        System.out.println(itemService.findById(id));
         model.addAttribute("item",itemService.findById(id));
-        return "updateitem";
+        return "update-item";
     }
 
 
     @PostMapping("/update/{id}")
     public String updateItem(@PathVariable int id, @Valid @ModelAttribute("item") ItemListDTO item, BindingResult result){
-        System.out.println(item);
         if(result.hasErrors()){
-            return "updateitem";
+            return "update-item";
         }
         itemService.update(item);
         return "redirect:/item/"+id;
