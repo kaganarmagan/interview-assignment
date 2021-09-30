@@ -37,7 +37,7 @@
     <h2>New Item</h2>
     <div class="row">
         <div class="col-md-6">
-            <form action="#" th:action="@{/item/update/{id}(id=${item.id})}" th:object="${item}" method="post">
+            <form action="#" th:action="@{/item/update/{id}(id=${item.customerId})}" th:object="${item}" method="post">
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="name" class="col-form-label">Name</label>
@@ -54,7 +54,8 @@
                         <input type="text" th:field="*{destinationCity}" class="form-control" id="destinationCity" placeholder="City" required>
                         <div class="alert alert-warning" th:if="${#fields.hasErrors('destinationCity')}" th:errors="*{destinationCity}"></div>
                     </div>
-
+                    <input type ="hidden" th:name="customerId" th:value="${item.customerId}" />
+                    <input type ="hidden" th:name="id" th:value="${item.id}" />
                     <div class="form-group col-md-6">
                         <label for="price" class="col-form-label">Price</label>
                         <input type="text" th:field="*{price}" class="form-control" id="price" placeholder="Price" required >

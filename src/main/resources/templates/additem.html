@@ -37,12 +37,8 @@
     <h2>New Item</h2>
     <div class="row">
         <div class="col-md-6">
-            <form action="#" th:action="@{/additem/{id}(id=${item.customerId})}" th:object="${item}" method="post">
+            <form action="#" th:action="@{/item/additem/{id}(id=${item.customerId})}" th:object="${item}" method="post">
                 <div class="row">
-                    <div class="form-group col-md-6">
-                        <label for="customerId" class="col-form-label">Id</label>
-                        <input type="text" readonly class="form-control-plaintext" id="customerId" th:value="${id}">
-                    </div>
                     <div class="form-group col-md-6">
                         <label for="name" class="col-form-label">Name</label>
                         <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Name" required >
@@ -58,13 +54,12 @@
                         <input type="text" th:field="*{destinationCity}" class="form-control" id="destinationCity" placeholder="City" required>
                         <div class="alert alert-warning" th:if="${#fields.hasErrors('destinationCity')}" th:errors="*{destinationCity}"></div>
                     </div>
-
-
                     <div class="form-group col-md-6">
                         <label for="price" class="col-form-label">Price</label>
                         <input type="text" th:field="*{price}" class="form-control" id="price" placeholder="Price" required >
                         <div class="alert alert-warning" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
                     </div>
+                    <input type ="hidden" th:name="customerId" th:value="${item.customerId}" />
                 </div>
                 <div class="row">
                     <div class="col-md-6 mt-5">

@@ -52,8 +52,8 @@ public class CustomerController {
 
 
 
-    @PostMapping("/update/{id}")
-    public String updateUser(@PathVariable int id, @Valid CustomerListDTO customerListDTO, BindingResult result, Model model){
+    @PostMapping("/update")
+    public String updateUser( @Valid @ModelAttribute("customer") CustomerListDTO customerListDTO, BindingResult result){
         if(result.hasErrors()){
             return "updatecustomer";
         }

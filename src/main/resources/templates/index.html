@@ -70,7 +70,7 @@
             <td th:text="${customer.city}">Mark</td>
             <td th:text="${customer.itemsQuant}">Mark</td>
             <td><a th:href="@{/item/{id}(id=${customer.id})}" class="btn btn-secondary"><i class="fas fa-dolly"></i></a></td>
-            <td><a th:href="@{/edit/{id}(id=${customer.id})}" class="btn btn-primary"><i class="fas fa-user-edit"></i></a></td>
+            <td><a th:href="@{/update/{id}(id=${customer.id})}" class="btn btn-primary"><i class="fas fa-user-edit"></i></a></td>
             <td><a th:href="@{/delete/{id}(id=${customer.id})}" class="btn btn-danger"><i class="fa fa-user-times"></i></a></td>
 
         </tr>

@@ -21,13 +21,13 @@ import java.util.Optional;
 @Slf4j
 public class ItemService implements IBaseService<Item, ItemRequestDTO, ItemListDTO> {
     @Autowired
-    public  IItemRepository repository;
+    private  IItemRepository repository;
 
     @Autowired
-    public ItemMapper mapper;
+    private ItemMapper mapper;
 
     @Autowired
-    public ICustomerRepository customerRepository;
+    private ICustomerRepository customerRepository;
 
 
 
@@ -39,7 +39,13 @@ public class ItemService implements IBaseService<Item, ItemRequestDTO, ItemListD
 
         return repository.save(item);
     }
+    @Transactional
+    public Item update(ItemListDTO itemDTO) {
+        Item item=mapper.fromItemListDTOtoItem(itemDTO);
 
+
+        return repository.save(item);
+    }
 
 
 
