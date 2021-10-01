@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
           integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{/css/footer.css}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/ajax.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
@@ -55,7 +57,7 @@
 
         </tr>
         </thead>
-        <tbody>
+        <tbody id="myTable">
         <tr th:each="customer: ${customers}">
             <td th:text="${customer.id}">Mark</td>
             <td th:text="${customer.name}">Mark</td>
@@ -68,7 +70,6 @@
             <td><a th:href="@{/item/{id}(id=${customer.id})}" class="btn btn-secondary"><i class="fas fa-dolly"></i></a></td>
             <td><a th:href="@{/update/{id}(id=${customer.id})}" class="btn btn-primary"><i class="fas fa-user-edit"></i></a></td>
             <td><a th:href="@{/delete/{id}(id=${customer.id})}" class="btn btn-danger"><i class="fa fa-user-times"></i></a></td>
-
         </tr>
 
         </tbody>
@@ -76,10 +77,8 @@
 <p><div id="feedback"></div></p>
 <p><a href="/register" class="btn btn-primary"><i class="fas fa-user-plus"></i></a> </p>
 
-<script type="text/javascript"
-        src="webjars/jquery/2.2.4/jquery.min.js"></script>
 
-<script type="text/javascript" src="js/ajax.js"></script>
+
 
 
 </body>

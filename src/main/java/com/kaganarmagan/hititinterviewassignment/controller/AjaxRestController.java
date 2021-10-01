@@ -24,21 +24,16 @@ public class AjaxRestController {
 
 
     @PostMapping("/city")
-    public ResponseEntity<AjaxResponseBody> getResultsByCity(@RequestBody AjaxRequestBody city){
-        AjaxResponseBody result=new AjaxResponseBody();
+    public ResponseEntity<List<CustomerListDTO>> getResultsByCity(@RequestBody AjaxRequestBody city){
+
         List<CustomerListDTO> list;
         if(city.getRequest().equals("All")){
             list =customerService.findAll();
         }else {
             list = customerService.findCustomersByCity(city.getRequest()) ;
         }
-        if(list.isEmpty()){
-            result.setMsg("error");
-        }else{
-            result.setMsg("ok");
-        }
 
-        result.setResult(list);
-        return ResponseEntity.ok(result);
+
+        return ResponseEntity.ok(list);
     }
 }
